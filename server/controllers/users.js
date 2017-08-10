@@ -12,11 +12,11 @@ module.exports = (function() {
 				admin: false
 			}).then(function(user) {
                 //Does this after creating
-                res.json({success: true, errors: null, string: randString});
+                res.json({success: true, errors: null, user:user});
             }).catch(Sequelize.ValidationError, function (err) {
 	            // respond with validation errors
 	            console.log(err.errors)
-             	return res.status(422).send(err.errors);
+             	res.status(422).json(err.errors);
             }).catch(function(err) {
                 //Catches Errors
                 return res.status(400).send(error);
