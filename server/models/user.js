@@ -1,6 +1,8 @@
 'use strict';
 
-var bcrypt = require('bcrypt-nodejs');
+const Promise = require("bluebird");
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
@@ -53,8 +55,19 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {    
     hooks: {
-      beforeCreate: (password, options) => {
-        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+      beforeValidate: function(user, options) {
+
+        if (!user.changed('password')) {
+          return sequelize.Promise.reject("password not modified");
+        }
+
+        return bcrypt.genSaltAsync(8).then(function(salt) {
+          return bcrypt.hashAsync(user.password, salt, null);
+        }).then(function(hash) {
+          user.setDataValue('password', hash);
+        }).catch(function(err) {
+          return sequelize.Promise.reject(err);
+        });
       }
 
     }

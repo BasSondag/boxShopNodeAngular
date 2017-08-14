@@ -24,13 +24,12 @@ export class RegisterFormComponent implements OnInit {
     .then( (data) => {this._router.navigate(['show_user']) })
     .catch( (err) => {
       if (err.status  == '422') {
-      console.log("email is taken")  
+      console.log("email is already taken")  
       this.errors = "this email is already taken!"
     } else {
       this.errors = "Somme thing is not correct err staus 400"
     }
-    })
-    console.log("this should te err message", this.errors)
+    });
     this.user = new User();
   }
 }

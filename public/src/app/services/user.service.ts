@@ -7,12 +7,21 @@ export class UserService {
 
   constructor(private _http: Http) { }
   register(user) {
-    console.log(user, 'in the user service')
+    console.log(user, 'in the user.regise service')
   	return this._http.post('/users', user).map( data => data.json() ).toPromise();
   }
 
 	login(user) {
-  	return this._http.post('/api/login', user).map( data => data.json() ).toPromise();
+    console.log(user, 'in the  user.login servive');
+  	return this._http.post('/login', user)
+      .map( (data) => {
+        console.log(data.json().email)
+        if (data.json().email === user.email){
+           localStorage.setItem('currentUser', data.json());
+           console.log(currentUser)
+        }
+        data.json()
+      }).toPromise();
   }
 
   check_session() {

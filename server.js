@@ -1,17 +1,26 @@
 var express = require("express");
+var app = express();
+
 var path = require("path");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var http = require('http');
 var models = require('./server/models');
 var debug = require('debug')('testPostSQL:server');
+var passport = require('passport');
 
-app = express();
+LocalStrategy = require('passport-local').Strategy;
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({secret: 'BlaBlaBla2', resave: true, saveUnintialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname,'/public/dist')));
 
+
+require('./server/config/passport/passport.js')(passport); // pass passport for configuration
 require('./server/config/routes.js')(app);
 
 var port = normalizePort(process.env.PORT || '8000');

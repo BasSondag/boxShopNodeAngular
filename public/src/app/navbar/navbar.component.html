@@ -13,9 +13,11 @@
 				<li><a routerLink="/about" routerLinkActive="active">About</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a routerLink="/login" routerLinkActive="active">Login</a> </li>
+				<li *ngIf="!(loggedIn)"><a routerLink="/login" routerLinkActive="active">Login</a> </li>
+				<li *ngIf="loggedIn"><a (click)="logOut()">Logout</a></li>
 				<li><a routerLink="/register" routerLinkActive="active">Register</a></li>
 			</ul>
 		</div>
 	</div>
+	{{currentUser}}
 </nav>

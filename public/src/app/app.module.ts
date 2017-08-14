@@ -12,6 +12,7 @@ import { ShowUserComponent } from './show-user/show-user.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 // services
 import { UserService } from './services/user.service';
 import { FooterComponent } from './footer/footer.component'
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component'
     WelcomeComponent,
     NavbarComponent,
     RegisterFormComponent,
-    FooterComponent
+    FooterComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
