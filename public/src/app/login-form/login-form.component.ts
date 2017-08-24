@@ -20,7 +20,16 @@ export class LoginFormComponent implements OnInit {
 
   logInUser() {
   	console.log(this.user ,"in login controller");
-  	this._userService.login(this.user).then( data => this._router.navigate(['show_user']) ).catch( err =>  this.errors = JSON.parse(err._body));
+  	this._userService.login(this.user).subscribe( 
+      res => {
+
+        this._router.navigate(['show_user']) 
+      },
+
+      err =>  {
+        this.errors = JSON.parse(err._body)
+      }
+    );
   	this.user = new User
   }
 }
