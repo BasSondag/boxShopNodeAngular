@@ -12,13 +12,22 @@ export class NavbarComponent implements OnInit {
 
 
 
-  constructor(public userService: UserService, private _router: Router) {}
+  constructor(public _userService: UserService, private _router: Router) {}
 
   ngOnInit() {
+  	this._userService.checkSession().subscribe(
+      res => {
+        console.log("checkking session")
+      },
+      err => {
+        console.log("Login in again")
+      }
+    );
+  	  
   }
 
   logOut() {
-  	this.userService.logout().subscribe(() => this._router.navigate(['/']));
+  	this._userService.logout().subscribe(() => this._router.navigate(['/']));
 
   }
 

@@ -19,8 +19,38 @@ module.exports = (function() {
              	res.status(422).json(err.errors);
             }).catch(function(err) {
                 //Catches Errors
-                return res.status(400).send(error);
+                return res.status(400).send(err);
             })
-		}		
+		},
+
+		update: function(req, res, next) {
+			console.log("foundUser", req.body)
+			// models.User.update({  
+			// 	  id: req.body.id
+			// 	})
+			// 	.then(user => {
+			// 		console.log(user.D)
+			// 	  	return user.updateAttributes(req.body);
+			// 	})
+			// 	.then (updatedUser => {
+			// 		res.json(updatedUser);
+			// 	})
+
+			models.User.update(
+	   			req.body,
+				{where:{id: req.body.id}}
+			)
+			.then( user => {
+				console.log("in user controntroller  updating ", user)
+				res.json({success: true, errors: null, user: user[0]}) 
+			})
+			.catch(function(err) {
+				console.log(err)
+				return res.status(400).send(err)
+
+			})
+		}
+			
+				
 	}
 })();

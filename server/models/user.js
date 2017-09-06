@@ -57,9 +57,9 @@ module.exports = function(sequelize, DataTypes) {
     hooks: {
       beforeValidate: function(user, options) {
 
-        if (!user.changed('password')) {
-          return sequelize.Promise.reject("password not modified");
-        }
+        // if (!user.changed('password')) {
+        //   return sequelize.Promise.reject("password not modified");
+        // }
 
         return bcrypt.genSaltAsync(8).then(function(salt) {
           return bcrypt.hashAsync(user.password, salt, null);

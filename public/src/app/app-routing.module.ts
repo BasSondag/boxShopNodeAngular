@@ -6,13 +6,21 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ShowUserComponent } from './show-user/show-user.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+
+import { UserAuthGuard } from './guards/user-auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
 	{ path: '', pathMatch: 'full', component: WelcomeComponent}, 
 	{ path: 'welcome', component: WelcomeComponent},
 	{ path: 'register', component: RegisterFormComponent},
 	{ path: 'login', component: LoginFormComponent},
-	{ path: 'show_user', component: ShowUserComponent}
+	{ path: 'show_user', component: ShowUserComponent, canActivate: [UserAuthGuard]},
+	{ path: 'dashboard', component: DashboardAdminComponent, canActivate: [AdminAuthGuard]},
+
+	// otherwise redirect to home
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

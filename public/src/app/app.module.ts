@@ -13,9 +13,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { FooterComponent } from './footer/footer.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 // services
 import { UserService } from './services/user.service';
-import { FooterComponent } from './footer/footer.component'
+//guards
+import { UserAuthGuard } from './guards/user-auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { FooterComponent } from './footer/footer.component'
     NavbarComponent,
     RegisterFormComponent,
     FooterComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DashboardAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,11 @@ import { FooterComponent } from './footer/footer.component'
     FormsModule,
     CollapseModule
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    UserAuthGuard,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

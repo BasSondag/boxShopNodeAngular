@@ -11,13 +11,13 @@ var passport = require('passport');
 
 LocalStrategy = require('passport-local').Strategy;
 
-
+app.use(express.static(path.join(__dirname,'/public/dist')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(session({secret: 'BlaBlaBla2', resave: true, saveUnintialized: true}));
+app.use(session({secret: 'BlaBlaBla2', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname,'/public/dist')));
+
 
 
 require('./server/config/passport/passport.js')(passport); // pass passport for configuration

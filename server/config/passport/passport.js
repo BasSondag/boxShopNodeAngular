@@ -7,13 +7,16 @@ module.exports =function(passport) {
     //######## SESSIONS              #########################################
     //serialize
     passport.serializeUser(function(user, done) {
+        console.log('in serializeUser')
         done(null, user.id);
     });
 
     // deserialize user 
     passport.deserializeUser(function(id, done) {
-        User.findById(id).then(function(user) {
+        User.findOne({where: {id: id}}).then(function(user) {
+            console.log("in deserialize")
             if (user) {
+                console.log(user.get())
                 done(null, user.get());
             } else {
                 done(user.errors, null);

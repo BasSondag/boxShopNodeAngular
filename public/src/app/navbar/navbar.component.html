@@ -10,13 +10,13 @@
 			<ul class="nav navbar-nav">
 				<li><a routerLink="/welcome" routerLinkActive="active">Welcome</a> </li>
 				<li><a routerLink="/shop" routerLinkActive="active">Web Shop</a></li>
-				<li *ngIf="(userService.userSignedIn$ | async)"><a routerLink="/show_user">Profile</a></li>
+				<li *ngIf="(_userService.userSignedIn$ | async)"><a routerLink="/show_user">Profile</a></li>
 				<li><a routerLink="/about" routerLinkActive="active">About</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li *ngIf="!(userService.userSignedIn$ | async)"><a routerLink="/login" routerLinkActive="active">Login</a> </li>
-				<li *ngIf="(userService.userSignedIn$ | async)"><a (click)="logOut()">Logout</a></li>
-				<li *ngIf="!(userService.userSignedIn$ | async)"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+				<li *ngIf="!(_userService.userSignedIn$ | async)"><a routerLink="/login" routerLinkActive="active">Login</a> </li>
+				<li *ngIf="(_userService.userSignedIn$ | async)"><a (click)="logOut()">Logout</a></li>
+				<li *ngIf="!(_userService.userSignedIn$ | async)"><a routerLink="/register" routerLinkActive="active">Register</a></li>
 			</ul>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 var users = require('../controllers/users.js');
 var passport = require("passport");
+var path = require('path');
 
 
 module.exports= function(app) {
@@ -9,7 +10,11 @@ module.exports= function(app) {
     /// Users controller
 	app.post('/users', function(req, res) {
 		users.create(req, res);
-	})
+	});
+    app.post('/updateUser', isAuthenticated, function(req, res, next) {
+        console.log("in userUpdate route")
+        users.update(req, res)
+    });
 //###########################################################################
     
     /// Passport 
@@ -34,22 +39,25 @@ module.exports= function(app) {
         res.send('Logout Ok');
     });
 
-    app.get('/checkLogin', isLoggedIn, function(req, res){
+    app.get('/checkLogin', isAuthenticated, function(req, res){
+        console.log("checking the user in session")
         res.json(req.user);
     });
 
-    app.get('/profile', isLoggedIn, function(req, res){
+    app.get('/profile', isAuthenticated, function(req, res){
         res.redirect('/');
     })
 
-
+    app.all("*", (req,res,next) => {
+        res.sendFile(path.resolve("./public/dist/index.html"))
+    })
 };
 
 
 
 // route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-
+function isAuthenticated(req, res, next) {
+    console.log( "in isAuthenticated  function")
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated()){
         console.log('IS AUTHENTICATED BEEP BOOP');
