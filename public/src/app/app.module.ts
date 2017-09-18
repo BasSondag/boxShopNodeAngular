@@ -15,11 +15,18 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ShowProductsComponent } from './show-products/show-products.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { UpdateProductFormComponent } from './update-product-form/update-product-form.component';
 // services
 import { UserService } from './services/user.service';
+import { ProductService } from './services/product.service'
 //guards
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +38,10 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
     RegisterFormComponent,
     FooterComponent,
     LoginFormComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    ShowProductsComponent,
+    ProductFormComponent,
+    UpdateProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +53,7 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
   providers: [
     UserService,
     UserAuthGuard,
+    ProductService,
     AdminAuthGuard
   ],
   bootstrap: [AppComponent]

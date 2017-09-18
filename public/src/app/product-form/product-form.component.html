@@ -1,0 +1,94 @@
+<div class="container" id="add_item_modal">
+	<div class="row">
+		<div class="col-md-8">
+			<h2>Add a Product </h2>
+		</div>
+	</div>
+	<div class="row">	
+		<form (submit)="addProduct()" #formData='ngForm' class="form-inline">
+			<div class="col-md-10">
+
+				<div class="form-group col-sm-10">
+					<label for="title" class="label-control col-sm-3">title:</label>
+					<input
+						class="form-control col-sm-7" 
+						type="text"
+						name="title"
+						required
+						[(ngModel)]="item.title"
+						#title='ngModel'>
+						<p *ngIf="!title.valid && (title.dirty || title.touched)">Title is required</p>
+				
+				</div>
+				<br>
+
+				<div class="form-group col-sm-10">	
+					<label for="description" class="label-control col-sm-3">Description:</label>
+					<input 
+						class="form-control col-sm-7"
+						type="text"
+						name="description"
+						required
+						maxlength="200"
+						[(ngModel)]='item.description'
+						#description='ngModel'>
+						<p *ngIf="description.errors?.maxlength && (description.dirty || description.touched)">Description cannot exceed 200 characters</p>
+						<p *ngIf="description.errors?.required && (description.dirty || description.touched)">Description is required</p>
+					
+				</div>
+				<br>
+
+				<div class="form-group col-sm-10">
+					<label for="price"  class="label-control col-sm-3">Price:</label>
+					<input 
+						class="form-control col-sm-7"
+						type="number"
+						name="price"
+						required
+						[(ngModel)]='item.price'
+						#price='ngModel'>
+						<p *ngIf="!price.valid && (price.dirty || price.touched)">Price is required</p>
+				</div>
+				<br>
+
+				<div class="form-group col-sm-10">
+					<label for="quantaty" class="label-control col-sm-3">Amount in stock:</label>	
+					<input 
+						class="form-control col-sm-7"
+						type="number"
+						name="quantaty"
+						required
+						[(ngModel)]='item.quantaty'
+						#quantaty='ngModel'>
+						<p *ngIf="!quantaty.valid && (quantaty.dirty || quantaty.touched)">Quantaty in stock is required</p>
+				</div>
+				<br>
+
+				<div class="form-group col-sm-10">
+					<label for="imageUrl" class="label-control col-sm-3">Url to Image:</label>
+					<input
+						class="form-control col-sm-7"
+						type="text"
+						name="imageUrl"
+						required
+						[(ngModel)]='item.img'
+						#imageUrl='ngModel'>
+						<p *ngIf="!imageUrl.valid && (imageUrl.dirty || imageUrl.touched)">Image Url is required</p>
+						<img *ngIf="imageUrl.valid" [src]=item.imageUrl>
+				</div>	
+				
+
+				<div class="form-group col-sm-7">
+					<br>
+					<br>
+					<input type="submit" class="btn btn-primary col-sm-offset-7"
+					[disabled]="!formData.valid" value="Add Product">
+					<br>
+					<br>
+				</div>	
+			</div>
+			
+		</form>
+	</div>
+</div>	
+<input type="hidden" [ngModel]="sharedVar" (ngModelChange)="change($event)">			

@@ -7,6 +7,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ShowUserComponent } from './show-user/show-user.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ShowProductsComponent } from './show-products/show-products.component';
 
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginFormComponent},
 	{ path: 'show_user', component: ShowUserComponent, canActivate: [UserAuthGuard]},
 	{ path: 'dashboard', component: DashboardAdminComponent, canActivate: [AdminAuthGuard]},
+	{ path: 'web_shop', component: ShowProductsComponent },
 
 	// otherwise redirect to home
     { path: '**', redirectTo: '' }

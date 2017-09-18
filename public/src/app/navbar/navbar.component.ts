@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
       },
       err => {
         console.log("Login in again")
+        this._router.navigate(['/login'])
       }
     );
   	  
