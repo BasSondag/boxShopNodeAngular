@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Item } from '../constructors/item';
-
+import { AlertService } from './../services/alert.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { Item } from '../constructors/item';
 export class DashboardAdminComponent implements OnInit {
   items: Array<Item>;
   item = new Item();
-  constructor(private _productService: ProductService) { }
+  constructor(private _productService: ProductService, private alertService: AlertService) { }
 
   ngOnInit() {
     this._productService.getAllItems().subscribe(
@@ -23,20 +23,24 @@ export class DashboardAdminComponent implements OnInit {
       },
       err => {
         console.log(err._body)
+
       }
     )
   }
 
 
   deleteItem(item) {
-    console.log(item)
-    this._productService.deleteItem(item).subscribe(
+    console.log(item, this)
+    this._productService.deleteItem(item.id).subscribe(
       res => {
-        console.log(res.json(), "succes");
+        console.log(res.json(), "succes" , this.item);
         this.items = res.json().products;
+        this.alertService.success( "You delleted " + item.title + " " + item.description  )
+
       },
       err => {
         console.log(err._body, "errors")
+        this.alertService.error(err._body)
       }
      )
   }

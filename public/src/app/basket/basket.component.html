@@ -1,0 +1,64 @@
+<div class="container" id="registration">
+	
+	<div *ngIf="basket.items.length < 1" class="row">
+		<div class="col-sm-offset-1">
+			<div class="col-sm-10">
+				<h2>Your basket is Empty</h2>
+			</div>
+		</div>
+	</div>
+	<div  *ngIf="basket.items.length > 0  " class="row">
+		<div class="col-sm-offset-1">
+			<div class="col-sm-10">
+					<h2>You have {{basket.items.length}} items in your basket</h2>	
+				<br>
+				<table class="table table-hover items_table col-sm-10">
+					<thead class="bg-warning ">
+						<tr>
+							<th>Title:</th>
+							<th>Description:</th>
+							<th>quantaty:</th>
+							<th>Delete</th>
+							<th>Price:</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of basket.items">
+							<td>{{item.title}}</td>
+							<td>{{item.description}}</td>
+							<td>{{item.quantaty}}</td>
+							<td>
+								<button class="btn btn-primary" (click)="deleteItem(item)">delete</button>
+							</td>
+							<td>{{item.price}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><h4>Your Total is: $</h4></td>
+							<td><h4>{{totalPrice}}</h4></td>
+						</tr>
+					</tbody>
+				</table>
+				<form (submit)="orderBasket()" #formData='ngForm' class="form-inline">
+
+						<input
+							class="form-control col-sm-7" 
+							type="hidden"
+							name="basket"
+							required
+							[(ngModel)]="basket" 
+							>
+					
+
+					<div class="col-sm-offset-9 ">
+						<input type="submit" class="btn btn-primary col-sm-offset-9"
+						 value="Order Now">
+					</div>	
+				</form>
+
+			</div>	
+		</div>
+	</div>
+</div>

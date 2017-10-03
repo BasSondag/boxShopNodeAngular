@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../constructors/item';
 import { ProductService } from './../services/product.service';
-
+import { AlertService } from './../services/alert.service';
 
 
 @Component({
@@ -17,11 +17,9 @@ export class UpdateProductFormComponent implements OnInit {
 	item= new Item()
 	@Input()  parentItem: any;
   @Output() parentItemChange = new EventEmitter();
-  // chaneItem = function (parentItem) {
-  // 	this.item = parentItem
-  // }
 
-  constructor(private productService: ProductService, private router: Router) {
+
+  constructor(private productService: ProductService,private alertService: AlertService, private router: Router) {
    }
 
 
@@ -32,7 +30,6 @@ export class UpdateProductFormComponent implements OnInit {
   			
         // only run when property "parentItem" changed
         if (changes['parentItem']) {
-        	console.log(this.parentItem, 'parent item changed')
             this.item = this.parentItem;
         }
     }
@@ -40,11 +37,10 @@ export class UpdateProductFormComponent implements OnInit {
   updateItem() {
     this.productService.update(this.item).subscribe(
       res => { 
-
-      console.log("update is success full", res, this.item) 
+      this.alertService.success( "Your update is success full")
       },
       err => {
-        console.log(err._body)
+        this.alertService.error(err._body);
       }
     );
 

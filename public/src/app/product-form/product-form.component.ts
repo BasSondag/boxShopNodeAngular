@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../constructors/item';
 import { ProductService } from './../services/product.service';
-
-@Component({
+import { AlertService } from './../services/alert.service';
+@Component({ 
+  moduleId: module.id,
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
@@ -15,7 +16,7 @@ export class ProductFormComponent implements OnInit {
 	index = 0;
   @Input() items: Array<Item>;
   @Output() itemsChange = new EventEmitter();
-  constructor( private _productService: ProductService, private router: Router) { }
+  constructor( private _productService: ProductService, private alertService: AlertService ,private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,11 +33,13 @@ export class ProductFormComponent implements OnInit {
         let modal = document.getElementById('add_item_modal');
         modal.style.display = "none";
         this.item = new Item();
+        this.alertService.success( "You success full added a product  ")
       },
 
       err =>  {
       	console.log("something went wrong ", err)
         this.item = new Item();
+        this.alertService.error(err._body);
       }
     );
   	

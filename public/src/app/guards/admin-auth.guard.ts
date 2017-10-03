@@ -8,13 +8,15 @@ export class AdminAuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     	let currentUser=JSON.parse(localStorage.getItem('currentUser') )
-        if (currentUser.admin) {
-            // logged in so return true
-            return true;
+        if(currentUser) {
+            if (currentUser.admin) {
+                // logged in so return true
+                return true;
+            }
         }
-
-        // not logged in so redirect to login page with the return url
+         // not logged in so redirect to login page with the return url
+        localStorage.clear()
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-        return false;
+        return false;  
     }
 }

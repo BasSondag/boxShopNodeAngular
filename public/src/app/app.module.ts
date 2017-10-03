@@ -18,14 +18,18 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { ShowProductsComponent } from './show-products/show-products.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { UpdateProductFormComponent } from './update-product-form/update-product-form.component';
+import { AlertsComponent } from './alerts/alerts.component';
+import { BasketComponent } from './basket/basket.component';
+
 // services
 import { UserService } from './services/user.service';
-import { ProductService } from './services/product.service'
+import { ProductService } from './services/product.service';
+import { AlertService } from './services/alert.service';
+import { BasketService } from './services/basket.service';
+
 //guards
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
-
-
 
 
 @NgModule({
@@ -41,7 +45,9 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
     DashboardAdminComponent,
     ShowProductsComponent,
     ProductFormComponent,
-    UpdateProductFormComponent
+    UpdateProductFormComponent,
+    AlertsComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,8 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
     UserService,
     UserAuthGuard,
     ProductService,
+    AlertService,
+    BasketService,
     AdminAuthGuard
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+
+
+.itemCard {
+	list-style: none;
+	border: 2px solid gray;
+	width: 500px;
+	height: 400px;
+	margin-bottom: 10px; 
+}
+	
+	img {
+		border: 1px solid gray;
+		width: 220px;
+		height: 140px;
+		margin: 5px;
+	}

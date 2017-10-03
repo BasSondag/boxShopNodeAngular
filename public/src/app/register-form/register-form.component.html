@@ -1,86 +1,90 @@
 
-<div class="container" id="login">
+<div class="container" id="Registration">
 	<div class="row">
-		<div class="col-md-8">
-			<h2>Registration</h2>
-			<div *ngIf="errors"><p class="error">{{errors}}</p>
+		<div class="col-sm-offset-1">
+			<div class="col-md-8">
+				<h2>Registration</h2>
+				<div *ngIf="errors"><p class="error">{{errors}}</p>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-8">	
-			<form (submit)="signInUser()" #formData='ngForm' class="form-inline">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="first_name">First Name:<br><input
-							class="form-control"
-							type="text"
-							name="first_name"
-							required
-							minlength="2"
-							[(ngModel)]="user.first_name"
-							#first_name='ngModel'>
-							<p *ngIf="first_name.errors?.minlength && (first_name.dirty || first_name.touched)">First name must be at least 2 characters long</p>
-							<p *ngIf="first_name.errors?.required && (first_name.dirty || first_name.touched)">First name is required</p>
-						</label><br>
-						<label for="last_name">Last Name:<br><input
-							class="form-control"
-							type="text"
-							name="last_name"
-							required
-							minlength="2"
-							[(ngModel)]="user.last_name"
-							#last_name='ngModel'>
-							<p *ngIf="last_name.errors?.minlength && (last_name.dirty || last_name.touched)">Last name must be at least 2 characters long</p>
-							<p *ngIf="last_name.errors?.required && (last_name.dirty || last_name.touched)">Last name is required</p>
-						</label><br>
-						<label for="email">Email:<br>
-							<input
+		<div class="col-sm-offset-1">
+			<div class="col-md-8">	
+				<form (submit)="signInUser()" #formData='ngForm' class="form-inline">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="first_name">First Name:<br><input
 								class="form-control"
 								type="text"
-								name="email"
+								name="first_name"
 								required
-								pattern="^([A-Za-z0-9._\-]+)@([a-zA-Z0-9._\-]+)\.([a-zA-Z]+)$"
-								minlength="8"
-								maxlength="32"
-								[(ngModel)]="user.email"
-								#email='ngModel'>
-							<p *ngIf="email.errors?.pattern && (email.dirty || email.touched)">Email is invalid, proper format</p>
-							<p *ngIf="email.errors?.minlength && (email.dirty || email.touched)">Email must be at least 8 characters long</p>
-							<p *ngIf="email.errors?.maxlength && (email.dirty || email.touched)">Email must not be longer than 32 characters</p>
-							<p *ngIf="email.errors?.required && (email.dirty || email.touched)">Email is required</p>
-						</label><br>
-						<label for="password">Password:
-							<p>Password requires at least 1 special character, uppercase, and lowercase</p>
-							<input
+								minlength="2"
+								[(ngModel)]="user.first_name"
+								#first_name='ngModel'>
+								<p *ngIf="first_name.errors?.minlength && (first_name.dirty || first_name.touched)">First name must be at least 2 characters long</p>
+								<p *ngIf="first_name.errors?.required && (first_name.dirty || first_name.touched)">First name is required</p>
+							</label><br>
+							<label for="last_name">Last Name:<br><input
 								class="form-control"
-								type="password"
-								name="password"
+								type="text"
+								name="last_name"
 								required
-								minlength="8"
-								maxlength="32"
-								[(ngModel)]="user.password"
-								#password='ngModel'>
-							<p *ngIf="password.errors?.minlength && (password.dirty || password.touched)">Password must be at least 8 characters long</p>
-							<p *ngIf="password.errors?.maxlength && (password.dirty || password.touched)">Password must not be longer than 32 characters long</p>
-							<p *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is required</p>
-						</label><br>
-						<label for="confirm_pw">Confirm Password:<br>
-							<input
-								class="form-control" 
-								type="password"
-								name="confirm_pw"
-								required
-								[(ngModel)]="user.confirm_pw"
-								#confirm_pw='ngModel'>
-							<p *ngIf="!confirm_pw.valid && (confirm_pw.dirty || confirm_pw.touched)">Confirmation password is required</p>
-							<p *ngIf="!(user.confirm_pw == user.password) && (confirm_pw.dirty || confirm_pw.touched)">Password must match confirmation password</p>
-						</label><br>
+								minlength="2"
+								[(ngModel)]="user.last_name"
+								#last_name='ngModel'>
+								<p *ngIf="last_name.errors?.minlength && (last_name.dirty || last_name.touched)">Last name must be at least 2 characters long</p>
+								<p *ngIf="last_name.errors?.required && (last_name.dirty || last_name.touched)">Last name is required</p>
+							</label><br>
+							<label for="email">Email:<br>
+								<input
+									class="form-control"
+									type="text"
+									name="email"
+									required
+									pattern="^([A-Za-z0-9._\-]+)@([a-zA-Z0-9._\-]+)\.([a-zA-Z]+)$"
+									minlength="8"
+									maxlength="32"
+									[(ngModel)]="user.email"
+									#email='ngModel'>
+								<p *ngIf="email.errors?.pattern && (email.dirty || email.touched)">Email is invalid, proper format</p>
+								<p *ngIf="email.errors?.minlength && (email.dirty || email.touched)">Email must be at least 8 characters long</p>
+								<p *ngIf="email.errors?.maxlength && (email.dirty || email.touched)">Email must not be longer than 32 characters</p>
+								<p *ngIf="email.errors?.required && (email.dirty || email.touched)">Email is required</p>
+							</label><br>
+							<label for="password">Password:
+								<p>Password requires at least 1 special character, uppercase, and lowercase</p>
+								<input
+									class="form-control"
+									type="password"
+									name="password"
+									required
+									minlength="8"
+									maxlength="32"
+									[(ngModel)]="user.password"
+									#password='ngModel'>
+								<p *ngIf="password.errors?.minlength && (password.dirty || password.touched)">Password must be at least 8 characters long</p>
+								<p *ngIf="password.errors?.maxlength && (password.dirty || password.touched)">Password must not be longer than 32 characters long</p>
+								<p *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is required</p>
+							</label><br>
+							<label for="confirm_pw">Confirm Password:<br>
+								<input
+									class="form-control" 
+									type="password"
+									name="confirm_pw"
+									required
+									[(ngModel)]="user.confirm_pw"
+									#confirm_pw='ngModel'>
+								<p *ngIf="!confirm_pw.valid && (confirm_pw.dirty || confirm_pw.touched)">Confirmation password is required</p>
+								<p *ngIf="!(user.confirm_pw == user.password) && (confirm_pw.dirty || confirm_pw.touched)">Password must match confirmation password</p>
+							</label><br>
 
-						<input type="submit" class="btn btn-primary" [disabled]="!formData.form.valid || !(user.confirm_pw == user.password)" value="Register">
-					</div>
-				</div>	
-			</form>
+							<input type="submit" class="btn btn-primary" [disabled]="!formData.form.valid || !(user.confirm_pw == user.password)" value="Register">
+						</div>
+					</div>	
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
