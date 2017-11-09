@@ -26,6 +26,7 @@ import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
 import { AlertService } from './services/alert.service';
 import { BasketService } from './services/basket.service';
+import { OrderService } from './services/order.service';
 
 //guards
 import { UserAuthGuard } from './guards/user-auth.guard';
@@ -60,6 +61,7 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
     UserService,
     UserAuthGuard,
     ProductService,
+    OrderService,
     AlertService,
     BasketService,
     AdminAuthGuard

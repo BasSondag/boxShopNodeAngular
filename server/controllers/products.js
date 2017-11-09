@@ -23,7 +23,6 @@ module.exports = (function() {
 				quantaty: req.body.quantaty,
 				img: req.body.imageUrl
 			}).then(function(item) {
-                console.log(item)
                 res.json({success: true, errors: null, item:item});
             }).catch(Sequelize.ValidationError, function (err) {
 	            // respond with validation errors
@@ -41,18 +40,15 @@ module.exports = (function() {
 				{where:{id: req.body.id}}
 			)
 			.then( product => {
-				console.log("in product controntroller  updating ", product)
 				res.json({success: true, errors: null, item: product[0]}) 
 			})
 			.catch(function(err) {
-				console.log(err)
 				return res.status(400).send(err)
 
 			})
 		},
 
 		delete: function(req, res) {
-			console.log(req.body, "id")
 			var self = this;
             // Find user, find and delete user's supports, then delete user
             models.Product.findOne({where: {id:  req.body.id}})

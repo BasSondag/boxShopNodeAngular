@@ -1,6 +1,7 @@
 var users = require('../controllers/users.js');
 var passport = require("passport");
 var products = require('../controllers/products');
+var orders = require('../controllers/orders.js')
 var path = require('path');
 
 
@@ -13,7 +14,6 @@ module.exports= function(app) {
 		users.create(req, res);
 	});
     app.post('/updateUser', isAuthenticated, function(req, res, next) {
-        console.log("in userUpdate route")
         users.update(req, res)
     });
 //###########################################################################
@@ -25,7 +25,6 @@ module.exports= function(app) {
                 return next(err);
             }
             req.logIn(user, function(err) {
-                console.log(user)
                 if(user === false) {
                     var err = "Email or Password is not correct "
                     return res.status(422). json(err)
@@ -60,7 +59,6 @@ module.exports= function(app) {
     });
 
     app.post('/items/create', isAuthenticated, needsAdmin(), function(req, res) {
-        console.log('in post item route')
         products.create(req, res)
     });
 
@@ -69,8 +67,17 @@ module.exports= function(app) {
     });
 
     app.post('/items/delete', isAuthenticated, needsAdmin(), function(req, res) {
-        // console.log(req)
         products.delete(req, res)
+    });
+
+//###########################################################################
+    //orders controller
+    app.get('/orders',isAuthenticated, needsAdmin(), function(req, res) {
+        orders.index(req, res)
+    });
+
+    app.post('/orders/create', function(req, res) {
+        orders.create(req,res)
     });
 
 
@@ -85,11 +92,9 @@ module.exports= function(app) {
 
 // route middleware to make sure a user is logged in
 function isAuthenticated(req, res, next) {
-    console.log( "in isAuthenticated  function")
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated()){
         console.log('IS AUTHENTICATED BEEP BOOP');
-        console.log(req.user);
         return next();
     }
 
@@ -102,7 +107,6 @@ var needsAdmin = function() {
   return function(req, res, next) {
     console.log(req.session.passport.user)
     if (req.user && req.user.admin === true && req.user.id === req.session.passport.user ){
-        console.log('ADMIN CONFIRMED');
         console.log('ADMIN CONFIRMED');
       next();
     }

@@ -6,12 +6,14 @@ module.exports = function(sequelize, DataTypes) {
     img: DataTypes.STRING,
     quantaty: DataTypes.INTEGER,
     price: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Product.associate = function(models) {
+    Product.belongsToMany(models.Order, {
+      through: 'Order_product',
+      as: 'Order' 
+    });
+  };
   return Product;
 };
+

@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Item } from '../constructors/item';
 import { AlertService } from './../services/alert.service';
-
+import { OrderService } from './../services/order.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -13,9 +13,20 @@ import { AlertService } from './../services/alert.service';
 export class DashboardAdminComponent implements OnInit {
   items: Array<Item>;
   item = new Item();
-  constructor(private _productService: ProductService, private alertService: AlertService) { }
+  orders=[];
+  constructor(private _productService: ProductService, private alertService: AlertService, private orderService: OrderService) { }
 
   ngOnInit() {
+    this.orderService.getAllOrders().subscribe(
+      res => {
+        console.log(res.json().orders, "this is all the orders")
+        this.orders= res.json().orders;
+      },
+      err => {
+        console.log(err._body);
+      }
+    )
+
     this._productService.getAllItems().subscribe(
       res => {
         console.log(res)

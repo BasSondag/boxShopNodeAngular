@@ -5,7 +5,6 @@ import { Basket } from '../constructors/basket';
 import { AlertService } from './../services/alert.service';
 import { BasketService } from './../services/basket.service';
 
-
 @Component({
   selector: 'app-show-products',
   templateUrl: './show-products.component.html',
@@ -17,6 +16,7 @@ export class ShowProductsComponent implements OnInit {
 	items: Array<Item>;
 	item= new Item();
   basket= new Basket();
+ 
 
   constructor( private productService: ProductService, private alertService: AlertService, private basketService: BasketService) { }
 
@@ -40,11 +40,10 @@ export class ShowProductsComponent implements OnInit {
     let isExcistingItem = false;
 
     item.quantaty = 1
-     console.log(this.basket, currentUser, currentBasket )
+     console.log(this.basket, currentUser, currentBasket)
     if (!currentBasket) {
 
       this.basket.items.push(item)
-
       localStorage.setItem('currentBasket',JSON.stringify(this.basket));
       console.log('first basket is in local storrage', JSON.parse(localStorage.getItem('currentBasket')))
       this.alertService.success("you added " + item.title + " to your basket")
