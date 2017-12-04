@@ -5,5 +5,6 @@ export class Basket {
 		public user_id: number = 0,
 		public items	: Array<Item> =[],
 		public counter: number = 0,
+		public total: number = 0,
 		) {}
 }

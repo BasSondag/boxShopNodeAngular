@@ -43,24 +43,25 @@ export class ShowProductsComponent implements OnInit {
      console.log(this.basket, currentUser, currentBasket)
     if (!currentBasket) {
 
-      this.basket.items.push(item)
+      this.basket.items.push(item);
+      this.basket.total += item.price;
+      this.basket.counter += 1;
       localStorage.setItem('currentBasket',JSON.stringify(this.basket));
-      console.log('first basket is in local storrage', JSON.parse(localStorage.getItem('currentBasket')))
-      this.alertService.success("you added " + item.title + " to your basket")
+      this.alertService.success("you added " + item.title + " to your basket");
     } else {
-      console.log("basket already excist lets ad it")
       for(let i= 0; i <currentBasket.items.length; i++){
         console.log(currentBasket.items[i].id, item.id)
         if (item.id === currentBasket.items[i].id){
-          console.log('found dubble')
           currentBasket.items[i].quantaty +=1;
-          console.log(currentBasket.items[i].quantaty)
+          currentBasket.total += item.price;
           isExcistingItem = true
           break;
         }
       }
-      if (isExcistingItem=== false) {
-        currentBasket.items.push(item)
+      if (isExcistingItem === false) {
+        currentBasket.items.push(item);
+        currentBasket.total += item.price;
+        currentBasket.counter += 1;
       }
       console.log(currentBasket.items)
       localStorage.setItem("currentBasket" ,JSON.stringify(currentBasket))

@@ -37,7 +37,7 @@
 							<td></td>
 							<td></td>
 							<td><h4>Your Total is: $</h4></td>
-							<td><h4>{{totalPrice}}</h4></td>
+							<td><h4>{{basket.total}}</h4></td>
 						</tr>
 					</tbody>
 				</table>
@@ -62,3 +62,11 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal" id="pay_modal">
+    <div class="modal-content">
+      <span class="close" (click)="closePayModal()">&times;</span>
+      	<app-stripe [basket]="basket" (finishOrder)="closePayModal()"></app-stripe>
+    </div>
+</div>
+

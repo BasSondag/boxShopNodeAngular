@@ -15,8 +15,9 @@ export class OrderService {
   		})
 	}
   
-  createOrder(order) {
-  	return this.http.post('/orders/create', order)
+  createOrder(order, token) {
+    let payedOrder= { order, token}
+  	return this.http.post('/orders/create', payedOrder)
   		.map( (response: Response) => {
   			return true
   		})

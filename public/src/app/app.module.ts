@@ -31,6 +31,7 @@ import { OrderService } from './services/order.service';
 //guards
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { StripeComponent } from './stripe/stripe.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
     ProductFormComponent,
     UpdateProductFormComponent,
     AlertsComponent,
-    BasketComponent
+    BasketComponent,
+    StripeComponent
   ],
   imports: [
     BrowserModule,
