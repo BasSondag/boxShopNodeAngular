@@ -11,18 +11,3 @@
 	</div>
 </div>
 
-<div class="modal" id="alert_message">
-    <div class="modal-content">
-      <span class="close" (click)="closeAlertModal()">&times;</span>
-      <div class="col-sm-offset-1"> 
-		 <div class="col-sm-10">     
-			<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }" class="alert_box">
-				{{message.text}} 
-				<span class="close" (click)="closeAlert(message)">
-					&times;
-				</span> 
-			</div>
-		</div>
-	</div>
-    </div>
-</div>
