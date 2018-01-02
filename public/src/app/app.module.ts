@@ -32,6 +32,7 @@ import { OrderService } from './services/order.service';
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { StripeComponent } from './stripe/stripe.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { StripeComponent } from './stripe/stripe.component';
     UpdateProductFormComponent,
     AlertsComponent,
     BasketComponent,
-    StripeComponent
+    StripeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

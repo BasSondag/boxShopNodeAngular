@@ -1,3 +1,5 @@
-.alert {
-	margin: 5px 30px;
+.alert_box {
+	position: fixed;
+	margin: 30px;
+	width: 100%;
 }

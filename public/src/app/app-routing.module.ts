@@ -9,6 +9,7 @@ import { ShowUserComponent } from './show-user/show-user.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { ShowProductsComponent } from './show-products/show-products.component';
 import { BasketComponent } from './basket/basket.component';
+import { AboutComponent } from './about/about.component';
 
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
@@ -22,6 +23,7 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashboardAdminComponent, canActivate: [AdminAuthGuard]},
 	{ path: 'web_shop', component: ShowProductsComponent },
 	{ path: 'basket', component: BasketComponent },
+	{ path: 'about', component: AboutComponent },
 
 	// otherwise redirect to home
     { path: '**', redirectTo: '' }

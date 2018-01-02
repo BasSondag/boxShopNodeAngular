@@ -18,6 +18,8 @@ export class AlertsComponent implements OnDestroy {
     console.log("IN AlertService")
   	this.subscription = alertService.getMessage().subscribe(message => {
       console.log(message)
+      let modal = document.getElementById('alert_message');
+      modal.style.display = "block";
       this.message = message;
       if(message   === 'success') {
         setTimeout(()=>{

@@ -1,32 +1,41 @@
 <div class="row">
 	<div class="col-sm-offset-1">
 		<div class="col-sm-10">
-			<ul>
-				<li *ngFor="let order of orders">
-					{{order.id}}
-					<ul>
-						<li *ngFor="let product of order.Product">
-							{{product.id}} {{product.title}}
-						</li>
-					</ul>
-				</li>
-			</ul>
+			<div class="orders-frame">
+				<h3> Open Orders:</h3>
+				<hr>	
+				<ul>
+					<li *ngFor="let order of orders">
+						Order Nr:
+						{{order.id}}
+						<ul>
+
+							products:<br>
+							<li *ngFor="let product of order.Product">
+								{{product.id}} {{product.title}}
+							</li>
+						</ul>
+						<hr>
+					</li>
+				</ul>
+			</div>
 		</div>
-	
+		<br>
+		<br>
 		<div class="col-sm-10 ">
-			<button (click)="openCreateModal()" class="btn btn-primary">add new product</button>
+			<button (click)="openCreateModal()" class="btn btn-primary">Add new product</button>
 			<table class="table table-hover items_table col-sm-10">
 				<thead class="bg-warning ">
 					<tr>
 						<th>Title:</th>
 						<th>Description:</th>
 						<th>Price:</th>
-						<th>quantaty:</th>
+						<th>quantity:</th>
 						<th>image URL:</th>
-						<th>Created At</th>
-						<th>Updated at</th>
-						<th>updated</th>
-						<th>Delete</th>
+						<th>Created at:</th>
+						<th>Updated at:</th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,7 +51,7 @@
 							<button class="btn btn-primary" (click)="openUpdateModal(item)">Update</button>
 						</td>
 						<td>
-							<button class="btn btn-primary" (click)="deleteItem(item)">delete</button>
+							<button class="btn btn-primary" (click)="deleteItem(item)">Delete</button>
 						</td>
 					</tr>
 				</tbody>
