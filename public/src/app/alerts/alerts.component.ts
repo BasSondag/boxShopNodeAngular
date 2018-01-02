@@ -5,21 +5,19 @@ import { AlertService } from '../services/alert.service';
 
 
 @Component({
-	moduleId: module.id,
+  moduleId: module.id,
   selector: 'alerts',
   templateUrl: './alerts.component.html',
 
 })
 export class AlertsComponent implements OnDestroy {
-	private subscription: Subscription;
+  private subscription: Subscription;
   message: any;
 
   constructor(private alertService: AlertService) { 
     console.log("IN AlertService")
-  	this.subscription = alertService.getMessage().subscribe(message => {
+    this.subscription = alertService.getMessage().subscribe(message => {
       console.log(message)
-      let modal = document.getElementById('alert_message');
-      modal.style.display = "block";
       this.message = message;
       if(message   === 'success') {
         setTimeout(()=>{
