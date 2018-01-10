@@ -12,19 +12,15 @@ export class BasketService {
   constructor(private _http: Http) { }
 
   createBasket(basket) {
-  	console.log(basket, 'in service')
   	return this._http.post('/baskets/create', basket)
       .map( (response: Response) => {
-        console.log(response.json(), " basket service create response")
         return response
       });
   }
 
   updateBasket(basket) {
-  	console.log(basket, "in productServices")
     return this._http.post('/baskets/update', basket)
       .map( (response: Response) => {
-        console.log(response.json(), "updated basket in services")
         return response
       })
   }

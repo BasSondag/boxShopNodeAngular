@@ -22,13 +22,9 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct() {
-
-  	console.log(this.item ,"in login controller");
   	this._productService.create(this.item).subscribe( 
       res => {
-        console.log(res.json().item)
         this.items.push(res.json().item)
-        console.log(this.items)
         this.itemsChange.emit(this.items)
         let modal = document.getElementById('add_item_modal');
         modal.style.display = "none";
@@ -37,7 +33,6 @@ export class ProductFormComponent implements OnInit {
       },
 
       err =>  {
-      	console.log("something went wrong ", err)
         this.item = new Item();
         this.alertService.error(err._body);
       }

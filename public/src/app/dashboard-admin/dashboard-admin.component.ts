@@ -19,7 +19,7 @@ export class DashboardAdminComponent implements OnInit {
   ngOnInit() {
     this.orderService.getAllOrders().subscribe(
       res => {
-        console.log(res.json().orders, "this is all the orders")
+
         this.orders= res.json().orders;
       },
       err => {
@@ -29,7 +29,6 @@ export class DashboardAdminComponent implements OnInit {
 
     this._productService.getAllItems().subscribe(
       res => {
-        console.log(res)
         this.items = res.json().products
       },
       err => {
@@ -41,30 +40,25 @@ export class DashboardAdminComponent implements OnInit {
 
 
   deleteItem(item) {
-    console.log(item, this)
     this._productService.deleteItem(item.id).subscribe(
       res => {
-        console.log(res.json(), "succes" , this.item);
         this.items = res.json().products;
         this.alertService.success( "You delleted " + item.title + " " + item.description  )
 
       },
       err => {
-        console.log(err._body, "errors")
         this.alertService.error(err._body)
       }
      )
   }
 
   openCreateModal() {
-    console.log("opening modal")
   	let modal = document.getElementById('add_item_modal');
 	  modal.style.display = "block";
   }
 
   openUpdateModal(item) {
     this.item = item
-    console.log("opening modal", console.log(this.item))
     let modal = document.getElementById('update_item_modal');
     modal.style.display = "block";
   }

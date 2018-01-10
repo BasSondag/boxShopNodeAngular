@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertService } from './../services/alert.service';
 import { BasketService } from './../services/basket.service';
 import { Basket } from './../constructors/basket';
+import { BasketCountService } from './../services/basket-count.service';
 
 
 
@@ -17,20 +18,18 @@ export class BasketComponent implements OnInit {
 	totalPrice = 0;
 
 
-  constructor(private baskeService: BasketService, private alertService: AlertService, private router: Router) { }
+  constructor(private baskeService: BasketService, private alertService: AlertService, private basketCountService: BasketCountService, private router: Router) { }
 
   ngOnInit() {
   	let currentBasket = JSON.parse(localStorage.getItem('currentBasket'));
-  	console.log(currentBasket)
   	if(currentBasket) {
   		this.basket = currentBasket
   	}
-  	console.log('this is the basket', this.basket, this.totalPrice)
+
   }
 
 
   orderBasket() {
-  	console.log(this.basket);
     let modal = document.getElementById('pay_modal');
     modal.style.display = "block";
    
@@ -41,6 +40,7 @@ export class BasketComponent implements OnInit {
     modal.style.display = "none";
     localStorage.removeItem("currentBasket")
     this.basket= new Basket();
+    this.basketCountService.update(0);
     this.alertService.success( "Thank you for your order. We let you know when it is Shipped")
 
   }

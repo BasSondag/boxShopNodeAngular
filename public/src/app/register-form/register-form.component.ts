@@ -21,13 +21,11 @@ export class RegisterFormComponent implements OnInit {
   }
 
   signInUser() {
-  	console.log(this.user)
     this._userService.register(this.user)
     .then( (data) => {this._router.navigate(['show_user']) })
     .catch( (err) => {
       if (err.status  == '422') { 
         let error = JSON.parse(err._body)
-        console.log(error[0].message, "it is somthing")
         this.errors = "this email is already taken!"
         this.alertService.error(error[0].message);
 

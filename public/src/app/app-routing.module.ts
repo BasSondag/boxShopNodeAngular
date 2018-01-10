@@ -10,6 +10,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { ShowProductsComponent } from './show-products/show-products.component';
 import { BasketComponent } from './basket/basket.component';
 import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
@@ -24,6 +25,7 @@ const routes: Routes = [
 	{ path: 'web_shop', component: ShowProductsComponent },
 	{ path: 'basket', component: BasketComponent },
 	{ path: 'about', component: AboutComponent },
+	{ path: 'contact', component: ContactComponent },
 
 	// otherwise redirect to home
     { path: '**', redirectTo: '' }

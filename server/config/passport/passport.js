@@ -55,9 +55,15 @@ module.exports =function(passport) {
 
           }
 
-          var userinfo = user.get();
-
-          return done(null,userinfo);
+          let userinfo = user.get();
+          const userToken= {
+            id: userinfo.id,
+            first_name: userinfo.first_name,
+            last_name: userinfo.last_name,
+            email: userinfo.email,
+            admin: userinfo.admin
+          }
+          return done(null,userToken);
 
         }).catch(function(err){
 

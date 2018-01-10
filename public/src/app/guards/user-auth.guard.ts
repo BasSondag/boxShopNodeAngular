@@ -9,10 +9,8 @@ export class UserAuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('currentUser')) {
-        console.log("user autguard is true", JSON.parse(localStorage.getItem('currentUser')))
         return true;
     }
-    console.log("user autguard is false")
     localStorage.clear()
     // not logged in so redirect to login page with the return url
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});

@@ -21,7 +21,6 @@ export class ShowUserComponent implements OnInit {
   	this._userService.update(this.user)
     .then((data) => { 
       localStorage.setItem('currentUser', JSON.stringify(this.user))
-      console.log("update is success full", data, this.user) 
     })
     .catch( (err) => { console.log("err in update") })
 

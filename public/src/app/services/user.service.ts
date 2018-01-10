@@ -18,12 +18,10 @@ export class UserService {
 	login(user) {
   	return this._http.post('/login', user)
       .map( (response: Response) => {
-        console.log(response.json().admin, " user service admin check")
         if (response.json().email === user.email && response.json().admin == true) {
           localStorage.setItem('currentUser', JSON.stringify(response.json()));
           this.userSignedIn$.next(true);
           this.userIsAdmin$.next(true);
-          console.log(this.userSignedIn$, this.userIsAdmin$, " are the observables set?");
           return true
         }
         if (response.json().email === user.email){
@@ -54,28 +52,22 @@ export class UserService {
         email: user.email
       }
     }
-    console.log('updatei s called', cleanUser)
     return this._http.post('/updateUser', cleanUser).map( data => data.json() ).toPromise();
   }
 
   checkSession() {
-    console.log("checking session")
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser)
   	return this._http.get('/checkLogin')
       .map( (data) => {
-        console.log(currentUser, data.json().id, 'checket the results')
         if (data.json().id === currentUser.id && data.json().admin == true) {
           this.userSignedIn$.next(true);
           this.userIsAdmin$.next(true);
-          console.log(this.userSignedIn$, this.userIsAdmin$, " are the observables set?");
           return 
         }
         if (data.json().id === currentUser.id){
           this.userSignedIn$.next(true);
           return 
         } else {
-          console.log("what is wrong")
           localStorage.clear();
           this.userSignedIn$.next(false);
           this.userIsAdmin$.next(false);
@@ -89,7 +81,6 @@ export class UserService {
     var user = JSON.parse(localStorage.getItem('currentUser'))
     return this._http.get('/logout',user)
       .map( (response:Response) => {
-        console.log(response)
         localStorage.clear();
         this.userSignedIn$.next(false);
         this.userIsAdmin$.next(false);

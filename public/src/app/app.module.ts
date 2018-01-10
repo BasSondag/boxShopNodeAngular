@@ -20,6 +20,10 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { UpdateProductFormComponent } from './update-product-form/update-product-form.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { BasketComponent } from './basket/basket.component';
+import { StripeComponent } from './stripe/stripe.component';
+import { AboutComponent } from './about/about.component';
+import { BasketCountComponent } from './basket-count/basket-count.component';
+import { ContactComponent } from './contact/contact.component';
 
 // services
 import { UserService } from './services/user.service';
@@ -27,12 +31,13 @@ import { ProductService } from './services/product.service';
 import { AlertService } from './services/alert.service';
 import { BasketService } from './services/basket.service';
 import { OrderService } from './services/order.service';
+import { BasketCountService } from './services/basket-count.service';
 
 //guards
 import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
-import { StripeComponent } from './stripe/stripe.component';
-import { AboutComponent } from './about/about.component';
+
+
 
 
 @NgModule({
@@ -52,7 +57,9 @@ import { AboutComponent } from './about/about.component';
     AlertsComponent,
     BasketComponent,
     StripeComponent,
-    AboutComponent
+    AboutComponent,
+    BasketCountComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,8 @@ import { AboutComponent } from './about/about.component';
     OrderService,
     AlertService,
     BasketService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    BasketCountService
   ],
   bootstrap: [AppComponent]
 })

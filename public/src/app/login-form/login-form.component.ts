@@ -24,13 +24,10 @@ export class LoginFormComponent implements OnInit {
 
 
   logInUser() {
-  	console.log(this.user ,"in login controller");
   	this._userService.login(this.user).subscribe( 
       res => {
         let user = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(user)
         if (user.admin) {
-          console.log(user.admin, "basbas result in login component")
           this._router.navigate(['dashboard']);
         } else {
           this._router.navigate(['show_user']);

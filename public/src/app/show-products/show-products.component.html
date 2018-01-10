@@ -9,6 +9,7 @@
 			<div class="col-sm-8">
 				<ul class="itemCard_holder">
 					<li class="itemCard" *ngFor="let item of items">
+
 						<h3>{{item.title}}</h3>
 						<img src="{{item.img}}" alt="image of item did not load" class="img-responsive">
 						<h4>Price: ${{item.price}} <button class="btn btn-primary col-sm-offset-7" (click)="addToBasket(item)">Order Product</button></h4>

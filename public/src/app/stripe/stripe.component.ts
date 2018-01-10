@@ -54,20 +54,17 @@ export class StripeComponent implements AfterViewInit, OnDestroy {
     const { token, error } = await stripe.createToken(this.card);
 
     if (error) {
-      console.log('Something is wrong:', error);
+      console.log( error);
 
     } else {
-      console.log('Success!', token, this.basket);
       // ...send the token to the your backend to process the charge
-      console.log(this.basket)    
       this.orderService.createOrder(this.basket, token).subscribe(
       res => {
-        console.log('order is placed');
         this.finishOrder.emit(this.basket)
 
       },
       err => {
-        console.log('some thing went wrong wit the oreder')
+        console.log('something is wrong with payment')
       }
     );
 

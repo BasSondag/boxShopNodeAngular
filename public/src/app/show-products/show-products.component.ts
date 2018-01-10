@@ -4,6 +4,7 @@ import { Item } from '../constructors/item';
 import { Basket } from '../constructors/basket';
 import { AlertService } from './../services/alert.service';
 import { BasketService } from './../services/basket.service';
+import { BasketCountService } from './../services/basket-count.service'
 
 @Component({
   selector: 'app-show-products',
@@ -18,15 +19,14 @@ export class ShowProductsComponent implements OnInit {
   basket= new Basket();
  
 
-  constructor( private productService: ProductService, private alertService: AlertService, private basketService: BasketService) { }
+  constructor( private productService: ProductService, private alertService: AlertService, private basketService: BasketService, private basketCountService: BasketCountService) { }
 
   ngOnInit() {
-    console.log('in init show-products')
   	this.productService.getAllItems().subscribe(
       
   		res => {
   			this.items = res.json().products
-  			console.log(this.items)
+
   		},
   		err => {
   			console.log(err._body);
@@ -39,8 +39,8 @@ export class ShowProductsComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let isExcistingItem = false;
 
-    item.quantaty = 1
-     console.log(this.basket, currentUser, currentBasket)
+    item.quantaty = 1;
+
     if (!currentBasket) {
 
       this.basket.items.push(item);
@@ -48,9 +48,9 @@ export class ShowProductsComponent implements OnInit {
       this.basket.counter += 1;
       localStorage.setItem('currentBasket',JSON.stringify(this.basket));
       this.alertService.success("you added " + item.title + " to your basket");
+      this.basketCountService.update(this.basket.counter);
     } else {
       for(let i= 0; i <currentBasket.items.length; i++){
-        console.log(currentBasket.items[i].id, item.id)
         if (item.id === currentBasket.items[i].id){
           currentBasket.items[i].quantaty +=1;
           currentBasket.total += item.price;
@@ -62,8 +62,8 @@ export class ShowProductsComponent implements OnInit {
         currentBasket.items.push(item);
         currentBasket.total += item.price;
         currentBasket.counter += 1;
+        this.basketCountService.update(currentBasket.counter);
       }
-      console.log(currentBasket.items)
       localStorage.setItem("currentBasket" ,JSON.stringify(currentBasket))
       this.alertService.success("you added " + item.title + " to your basket")
     }

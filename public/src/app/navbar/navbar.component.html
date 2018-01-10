@@ -1,8 +1,8 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggke collapsed" (click)="isCollapsed = !isCollapsed">
-				<span class="icon-bar"></span>
+			<button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
+				<i class="fa fa-bars fa-inverse"></i>
 			</button>
 			<a class="navbar-brand" href="/">the Glasses Expert</a>
 		</div>
@@ -12,8 +12,15 @@
 				<li><a routerLink="/web_shop" routerLinkActive="active">Web Shop</a></li>
 				<li *ngIf="(_userService.userSignedIn$ | async)"><a routerLink="/show_user">Profile</a></li>
 				<li><a routerLink="/about" routerLinkActive="active">About</a></li>
+				<li><a routerLink="/contact" routerLinkActive="active">Contact</a> </li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a routerLink="/basket" routerLinkActive="active"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+
+						 <span class="badge badge-danger"><app-basket-count></app-basket-count></span>
+					</a>
+				</li>
 				<li *ngIf="!(_userService.userSignedIn$ | async)"><a routerLink="/login" routerLinkActive="active">Login</a> </li>
 				<li *ngIf="(_userService.userSignedIn$ | async)"><a (click)="logOut()">Logout</a></li>
 				<li *ngIf="!(_userService.userSignedIn$ | async)"><a routerLink="/register" routerLinkActive="active">Register</a></li>
@@ -23,4 +30,3 @@
 	
 </nav>
 
-{{currentUser}}
