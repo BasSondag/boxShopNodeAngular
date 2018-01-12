@@ -1,76 +1,78 @@
-<div class="row">
-	<div class="col-sm-offset-1">
-		<div class="col-sm-10">
-			<div class="orders-frame">
-				<h3> Open Orders:</h3>
-				<hr>	
-				<ul>
-					<li *ngFor="let order of orders">
-						Order Nr:
-						{{order.id}}
-						<ul>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-offset-1">
+			<div class="col-sm-10">
+				<div class="orders-frame">
+					<h3> Open Orders:</h3>
+					<hr>	
+					<ul>
+						<li *ngFor="let order of orders">
+							Order Nr:
+							{{order.id}}
+							<ul>
 
-							products:<br>
-							<li *ngFor="let product of order.Product">
-								{{product.id}} {{product.title}}
-							</li>
-						</ul>
-						<hr>
-					</li>
-				</ul>
+								products:<br>
+								<li *ngFor="let product of order.Product">
+									{{product.id}} {{product.title}}
+								</li>
+							</ul>
+							<hr>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<br>
-		<br>
-		<div class="col-sm-10 ">
-			<button (click)="openCreateModal()" class="btn btn-primary">Add new product</button>
-			<table class="table table-hover items_table col-sm-10">
-				<thead class="bg-warning ">
-					<tr>
-						<th>Title:</th>
-						<th>Description:</th>
-						<th>Price:</th>
-						<th>quantity:</th>
-						<th>image URL:</th>
-						<th>Created at:</th>
-						<th>Updated at:</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let item of items">
-						<td>{{item.title}}</td>
-						<td>{{item.description}}</td>
-						<td>{{item.price}}</td>
-						<td>{{item.quantaty}}</td>
-						<td>{{item.img}}</td>
-						<td>{{item.createdAt}}</td>
-						<td>{{item.updatedAt}}</td>
-						<td>
-							<button class="btn btn-primary" (click)="openUpdateModal(item)">Update</button>
-						</td>
-						<td>
-							<button class="btn btn-primary" (click)="deleteItem(item)">Delete</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>	
-	
-</div>
+			<br>
+			<br>
+			<div class="col-sm-10 ">
+				<button (click)="openCreateModal()" class="btn btn-primary">Add new product</button>
+				<table class="table table-hover items_table col-sm-10">
+					<thead class="bg-warning ">
+						<tr>
+							<th>Title:</th>
+							<th>Description:</th>
+							<th>Price:</th>
+							<th>quantity:</th>
+							<th>image URL:</th>
+							<th>Created at:</th>
+							<th>Updated at:</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of items">
+							<td>{{item.title}}</td>
+							<td>{{item.description}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.quantaty}}</td>
+							<td>{{item.img}}</td>
+							<td>{{item.createdAt}}</td>
+							<td>{{item.updatedAt}}</td>
+							<td>
+								<button class="btn btn-primary" (click)="openUpdateModal(item)">Update</button>
+							</td>
+							<td>
+								<button class="btn btn-primary" (click)="deleteItem(item)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+		
+	</div>
 
-<div class="modal" id="add_item_modal">
-    <div class="modal-content">
-      <span class="close" (click)="closeCreateModal()">&times;</span>
-      		<app-product-form [items]="items"></app-product-form>
-    </div>
-</div>
+	<div class="modal" id="add_item_modal">
+	    <div class="modal-content">
+	      <span class="close" (click)="closeCreateModal()">&times;</span>
+	      		<app-product-form [items]="items"></app-product-form>
+	    </div>
+	</div>
 
-<div class="modal" id="update_item_modal">
-    <div class="modal-content">
-      <span class="close" (click)="closeUpdateModal()">&times;</span>
-      		<app-update-product-form [parentItem]="item"></app-update-product-form>
-    </div>
+	<div class="modal" id="update_item_modal">
+	    <div class="modal-content">
+	      <span class="close" (click)="closeUpdateModal()">&times;</span>
+	      		<app-update-product-form [parentItem]="item"></app-update-product-form>
+	    </div>
+	</div>
 </div>

@@ -12,6 +12,7 @@ import { Basket } from '../constructors/basket';
 export class NavbarComponent implements OnInit {
 cartCounter= 0;
 basket = new Basket();
+isCollapsed = false;
 
 
   constructor(public _userService: UserService, private _router: Router) {}
